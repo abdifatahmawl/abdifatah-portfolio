@@ -1,7 +1,14 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import api from '../utils/api';
 
 const Home = () => {
+  useEffect(() => {
+    api.get('/health')
+      .then((res) => console.log(res.data))
+      .catch((err) => console.error('Health check failed', err));
+  }, []);
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
